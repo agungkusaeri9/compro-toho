@@ -12,10 +12,11 @@ import SingleTeam from "../Teams/SingleTeam";
 import { useQuery } from "@tanstack/react-query";
 import { getBanner } from "@/services/ApiService";
 import SingleBanner from "./singleBanner";
+import SkeletonBanner from "./SkeletonBanner";
 
 const Banner = () => {
 
-  const { data: banners } = useQuery({
+  const { data: banners, isLoading } = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
       const response = await getBanner();
@@ -52,13 +53,27 @@ const Banner = () => {
               modules={[Autoplay, Pagination]}
               className="w-full"
             >
-              {banners?.map((data) => (
-                <SwiperSlide key={`data-${data.id}`} className="w-full">
-                  <div className="w-full h-180">
-                    <SingleBanner data={data} />
-                  </div>
-                </SwiperSlide>
-              ))}
+
+
+              {isLoading ? (
+                [...Array(1)].map((_, i) => (
+                  <SwiperSlide key={`skeleton-${i}`} className="w-full">
+                    <div className="w-full h-180">
+                      <SkeletonBanner />
+                    </div>
+                  </SwiperSlide>
+                ))
+              ) : (
+                banners?.map((data) => (
+                  <SwiperSlide key={`banner-${data.id}`} className="w-full">
+                    <div className="w-full h-180">
+                      <SingleBanner data={data} />
+                    </div>
+                  </SwiperSlide>
+                ))
+              )}
+
+
             </Swiper>
           </div>
           {/* Swiper End */}

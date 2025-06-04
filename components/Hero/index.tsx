@@ -31,7 +31,7 @@ const Hero = () => {
           <div className="relative lg:w-1/2">
             <div className="relative w-full aspect-[4/3]">
               <Image
-                src="/images/logo-toho3.png"
+                src="/images/logo-toho4.png"
                 alt="Digital Engineering"
                 fill
                 className="object-contain dark:hidden"

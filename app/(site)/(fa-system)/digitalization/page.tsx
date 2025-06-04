@@ -1,27 +1,53 @@
 import Digitalization from '@/components/FaSystem/digitalization'
 import HeroHeader from '@/components/Hero/HeroHeader'
+import { getArticleBySlug } from '@/services/ArticleService';
 import { Metadata } from 'next';
-import React from 'react'
-export const metadata: Metadata = {
-    title: "Digitalization - " + process.env.NEXT_PUBLIC_SITE_NAME,
-    openGraph: {
-        title: "Digitalization - " + process.env.NEXT_PUBLIC_SITE_NAME,
-        description: process.env.NEXT_PUBLIC_META_DESCRIPTION,
-        url: process.env.NEXT_PUBLIC_SITE_URL,
-        siteName: process.env.NEXT_PUBLIC_SITE_NAME,
-        images: [
-            {
-                url: process.env.NEXT_PUBLIC_LOGO || "",
-                width: 1200,
-                height: 630,
+import React from 'react';
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+    const slug = "digitalization";
+    try {
+        const res = await getArticleBySlug(slug);
+        const article: any = res.data;
+        return {
+            title: "Digitalization - " + process.env.NEXT_PUBLIC_SITE_NAME,
+            openGraph: {
+                title: "Digitalization - " + process.env.NEXT_PUBLIC_SITE_NAME,
+                description: article.description || process.env.NEXT_PUBLIC_META_DESCRIPTION,
+                url: process.env.NEXT_PUBLIC_URL + '/' + slug,
+                siteName: process.env.NEXT_PUBLIC_SITE_NAME,
+                images: [
+                    {
+                        url: article.image_url,
+                        width: 1200,
+                        height: 630,
+                    },
+                ],
+                locale: "id-ID",
+                type: "website",
             },
-        ],
-        locale: "en-US",
-        type: "website",
-    },
-    description: process.env.NEXT_PUBLIC_META_DESCRIPTION,
-};
-const DigitalizationPage = () => {
+            description: article.description || process.env.NEXT_PUBLIC_META_DESCRIPTION,
+        };
+    } catch (error) {
+        console.error("Gagal mengambil metadata:", error);
+        return {
+            title: "Artikel tidak ditemukan",
+            description: "Artikel ini tidak dapat ditemukan.",
+        };
+    }
+}
+
+const DigitalizationPage = async () => {
+
+    let data: any = {};
+    try {
+        const slug = "digitalization"
+        const res = await getArticleBySlug(slug);
+        data = res.data;
+    } catch (error) {
+        console.error("Error fetching articles:", error);
+        data = [];
+    }
+
     return (
         <>
             <HeroHeader
@@ -38,9 +64,12 @@ const DigitalizationPage = () => {
             <section className="pb-16 pt-24 md:pb-20 md:pt-28 lg:pb-24 lg:pt-32">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap">
-
-                        <div className="w-full px-4">
-                            <Digitalization />
+                        <div className="max-w-5xl mx-auto px-4">
+                            <section className="overflow-hidden pb-20 lg:pb-25 xl:pb-30">
+                                <div className="mx-auto max-w-c-1390  px-4 md:px-8 xl:px-0">
+                                    <div dangerouslySetInnerHTML={{ __html: data?.content }}></div>
+                                </div>
+                            </section >
                         </div>
                     </div>
                 </div>

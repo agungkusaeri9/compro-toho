@@ -36,14 +36,14 @@ const Footer = () => {
                   <Image
                     width={110}
                     height={80}
-                    src="/images/logo-toho2.png"
+                    src="/images/logo-toho4.png"
                     alt="Logo"
                     className="dark:hidden"
                   />
                   <Image
                     width={110}
                     height={80}
-                    src="/images/logo-toho2.png"
+                    src="/images/logo-toho4.png"
                     alt="Logo"
                     className="hidden dark:block"
                   />

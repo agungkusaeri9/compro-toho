@@ -4,15 +4,15 @@ import { getArticles } from "@/services/ArticleService";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Article - PT. Toho Technology Indonesia",
+  title: "Articles - " + process.env.NEXT_PUBLIC_SITE_NAME,
   openGraph: {
-    title: "Article - PT. Toho Technology Indonesia",
-    description: "PT Toho Technology Indonesia is a leading technology company specializing in software development, IT consulting, and digital transformation services.",
-    url: "https://www.toho.co.id",
-    siteName: "PT. Toho Technology Indonesia",
+    title: "Articles - " + process.env.NEXT_PUBLIC_SITE_NAME,
+    description: "Explore the latest insights, news, and updates from PT Toho Technology Indonesia, a leader in software development, IT consulting, digital transformation, IoT solutions, and industrial automation.",
+    url: process.env.NEXT_PUBLIC_URL + "/articles",
+    siteName: process.env.NEXT_PUBLIC_SITE_NAME,
     images: [
       {
-        url: "/images/logo-toho2.png",
+        url: process.env.NEXT_PUBLIC_URL + '/' + process.env.NEXT_PUBLIC_LOGO,
         width: 800,
         height: 600,
       },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: "en-US",
     type: "website",
   },
-  description: "PT Toho Technology Indonesia is a leading technology company specializing in software development, IT consulting, and digital transformation services.",
+  description: "Explore the latest insights, news, and updates from PT Toho Technology Indonesia, a leader in software development, IT consulting, digital transformation, IoT solutions, and industrial automation.",
 };
 
 const Articles = async ({ searchParams }: { searchParams: { search?: string, category_id?: number } }) => {
@@ -33,6 +33,7 @@ const Articles = async ({ searchParams }: { searchParams: { search?: string, cat
   try {
     const res = await getArticles(category_id || null, search || null);
     articles = res.data;
+    console.log({ articles })
   } catch (error) {
     console.error("Error fetching articles:", error);
     articles = [];

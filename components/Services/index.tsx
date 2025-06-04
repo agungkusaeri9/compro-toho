@@ -2,9 +2,18 @@
 import React from "react";
 import SectionHeader from "../Common/SectionHeader";
 import SingleService from "./SingleService";
-import ServiceData from "@/data/Service";
+import { getServices } from "@/services/ApiService";
+import { useQuery } from "@tanstack/react-query";
+import SkeletonService from "./SkeletonService";
 
 const Services = () => {
+  const { data: services, isLoading } = useQuery({
+    queryKey: ['services'],
+    queryFn: async () => {
+      const response = await getServices();
+      return response.data;
+    }
+  });
   return (
     <>
       {/* <!-- ===== Features Start ===== --> */}
@@ -23,9 +32,16 @@ const Services = () => {
           <div className="mt-12.5 grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:mt-15 lg:grid-cols-3 xl:mt-20 xl:gap-12.5">
             {/* <!-- Features item Start --> */}
 
-            {ServiceData.map((feature, key) => (
-              <SingleService feature={feature} key={key} />
-            ))}
+
+            {isLoading ? (
+              [...Array(3)].map((_, key) => <SkeletonService key={key} />)
+            ) : (
+              services?.map((service, key) => (
+                <SingleService data={service} key={key} />
+              ))
+            )}
+
+
             {/* <!-- Features item End --> */}
           </div>
         </div>

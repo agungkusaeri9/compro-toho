@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 import ToasterContext from "../context/ToastContext";
 import Providers from "../providers";
-
+import NextTopLoader from 'nextjs-toploader';
+import FooterWhatsapp from "@/components/Footer/FooterWhatsapp";
 export default function RootLayout({
   children,
 }: {
@@ -20,6 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`dark:bg-black ${inter.className}`}>
+        <NextTopLoader
+          color="#00499CFF"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+        />
         <ThemeProvider
           enableSystem={false}
           attribute="class"
@@ -32,7 +44,8 @@ export default function RootLayout({
             {children}
             <Footer />
           </Providers>
-          <ScrollToTop />
+          {/* <ScrollToTop /> */}
+          <FooterWhatsapp />
         </ThemeProvider>
       </body>
     </html>

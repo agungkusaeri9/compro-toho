@@ -191,7 +191,7 @@
 
 .blog-details ul,
 .blog-details ol {
-  @apply mb-10 list-inside list-disc text-titlebgdark;
+  @apply mb-10 text-titlebgdark;
 }
 
 .blog-details li,

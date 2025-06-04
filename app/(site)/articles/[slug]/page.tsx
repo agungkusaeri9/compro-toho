@@ -9,38 +9,38 @@ import SidebarBlogCategory from "@/components/BlogCategory/SidebarBlogCategory";
 import { getArticleBySlug } from "@/services/ArticleService";
 
 // 1. Fungsi generateMetadata untuk SEO
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const { slug } = await params;
-  try {
-    const res = await getArticleBySlug(slug);
-    const article: any = res.data;
-    return {
-      title: article.title,
-      openGraph: {
-        title: article.title,
-        description: article.description,
-        url: process.env.NEXT_PUBLIC_URL,
-        siteName: "PT. Toho Technology Indonesia",
-        images: [
-          {
-            url: article.image_url,
-            width: 800,
-            height: 600,
-          },
-        ],
-        locale: "en_US",
-        type: "website",
-      },
-      description: article.description,
-    };
-  } catch (error) {
-    console.error("Gagal mengambil metadata:", error);
-    return {
-      title: "Artikel tidak ditemukan",
-      description: "Artikel ini tidak dapat ditemukan.",
-    };
-  }
-}
+// export async function generateMetadata({ params }: any): Promise<Metadata> {
+//   const { slug } = await params;
+//   try {
+//     const res = await getArticleBySlug(slug);
+//     const article: any = res.data;
+//     return {
+//       title: article.title,
+//       openGraph: {
+//         title: article.title,
+//         description: article.description,
+//         url: process.env.NEXT_PUBLIC_URL,
+//         siteName: "PT. Toho Technology Indonesia",
+//         images: [
+//           {
+//             url: article.image_url,
+//             width: 800,
+//             height: 600,
+//           },
+//         ],
+//         locale: "en_US",
+//         type: "website",
+//       },
+//       description: article.description,
+//     };
+//   } catch (error) {
+//     console.error("Gagal mengambil metadata:", error);
+//     return {
+//       title: "Artikel tidak ditemukan",
+//       description: "Artikel ini tidak dapat ditemukan.",
+//     };
+//   }
+// }
 
 const SingleBlogPage = async ({ params }: any) => {
   const { slug } = await params;
@@ -104,6 +104,7 @@ const SingleBlogPage = async ({ params }: any) => {
                   className="blog-details"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />
+
               </div>
             </div>
             <SidebarBlogCategory category_id={article.category.id} />

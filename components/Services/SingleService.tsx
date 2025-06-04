@@ -2,12 +2,11 @@ import React from "react";
 import { Feature } from "@/types/feature";
 import { motion } from "framer-motion";
 
-const SingleService = ({ feature }: { feature: Feature }) => {
-  const { icon, title, description } = feature;
-
+const SingleService = ({ data }: { data: any }) => {
+  const { image_url, title, description } = data;
   return (
     <>
-      <div className="relative group">
+      <div className="relative group ">
         <motion.div
           variants={{
             hidden: {
@@ -26,8 +25,8 @@ const SingleService = ({ feature }: { feature: Feature }) => {
           viewport={{ once: true }}
           className="animate_top"
         >
-          <img src={icon} alt="" className="w-full brightness-50 group-hover:brightness-100" />
-          <div className="absolute bottom-1/3 p-5">
+          <img src={image_url} alt="" className="w-full brightness-50 group-hover:brightness-100" />
+          <div className="absolute bottom-1/3 p-5 w-full">
             <h3 className="mb-5 mt-7.5 font-semibold text-black dark:text-white  text-center text-white text-2xl">
               {title}
             </h3>

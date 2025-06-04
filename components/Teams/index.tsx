@@ -8,8 +8,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
 import { TeamData } from "./TeamData";
 import SingleTeam from "./SingleTeam";
+import { useQuery } from "@tanstack/react-query";
+import { getTeams } from "@/services/ApiService";
+import SkeletonTeam from "./SkeletonTeam";
 
 const Teams = () => {
+
+  const { data: teams, isLoading } = useQuery({
+    queryKey: ['teams'],
+    queryFn: async () => {
+      const response = await getTeams();
+      return response.data;
+    }
+  });
   return (
     <>
       <section>
@@ -71,13 +82,25 @@ const Teams = () => {
                 },
               }}
             >
-              {TeamData.map((data) => (
-                <SwiperSlide key={`data-${data.id}`}>
-                  <div className="swiper testimonial-01 pb-20 mb-15">
-                    <SingleTeam data={data} />
-                  </div>
-                </SwiperSlide>
-              ))}
+              {isLoading
+                ? [...Array(5)].map((_, i) => (
+                  <SwiperSlide key={`${i}`}>
+                    <div className="swiper testimonial-01 pb-20 mb-15">
+                      <SkeletonTeam key={i} />
+                    </div>
+                  </SwiperSlide>
+                ))
+                : (
+                  teams?.map((data) => (
+                    <SwiperSlide key={`data-${data.id}`}>
+                      <div className="swiper testimonial-01 pb-20 mb-15">
+                        <SingleTeam data={data} />
+                      </div>
+                    </SwiperSlide>
+                  ))
+                )}
+
+
             </Swiper>
           </div>
         </motion.div>

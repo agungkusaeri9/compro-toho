@@ -17,7 +17,9 @@ const FAQItem = ({ faqData }: { faqData: FaqData }) => {
           }}
           className="flex cursor-pointer items-center justify-between px-6 py-5 text-metatitle3 font-medium text-black dark:text-white lg:px-9 lg:py-7.5"
         >
-          {question}
+          <div className="text-left">
+            {question}
+          </div>
 
           {activeFaq === id ? (
             <svg

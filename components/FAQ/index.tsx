@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import FAQItem from "./FAQItem";
+import FAQItemSkeleton from "./FAQItemSkeleton";
 import faqData from "./faqData";
 import { useQuery } from "@tanstack/react-query";
 import { getFaqs } from "@/services/ApiService";
@@ -14,7 +15,7 @@ const FAQ = () => {
     activeFaq === id ? setActiveFaq(0) : setActiveFaq(id);
   };
 
-  const { data: faqs } = useQuery({
+  const { data: faqs, isLoading } = useQuery({
     queryKey: ["faqs"],
     queryFn: async () => {
       const response = await getFaqs();
@@ -108,12 +109,20 @@ const FAQ = () => {
               className="animate_right md:w-3/5 lg:w-1/2"
             >
               <div className="rounded-lg bg-white shadow-solid-8 dark:border dark:border-strokedark dark:bg-blacksection">
-                {faqs?.map((faq, key) => (
-                  <FAQItem
-                    key={key}
-                    faqData={{ ...faq, activeFaq, handleFaqToggle }}
-                  />
-                ))}
+                {isLoading ? (
+                  <>
+                    <FAQItemSkeleton />
+                    <FAQItemSkeleton />
+                    <FAQItemSkeleton />
+                  </>
+                ) : (
+                  faqs?.map((faq, key) => (
+                    <FAQItem
+                      key={key}
+                      faqData={{ ...faq, activeFaq, handleFaqToggle }}
+                    />
+                  ))
+                )}
               </div>
             </motion.div>
           </div>
