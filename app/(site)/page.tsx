@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import Teams from "@/components/Teams";
 import Client from "@/components/Client";
 import Banner from "@/components/Banner";
+import AboutTohoIndo from "@/components/About/AboutTohoIndo";
 
 export const metadata: Metadata = {
   title: "IoT solution - " + process.env.NEXT_PUBLIC_SITE_NAME,
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <main className="">
       <Banner />
       <About />
       <Services />

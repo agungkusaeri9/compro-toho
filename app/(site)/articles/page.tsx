@@ -1,7 +1,10 @@
 import ArticleList from "@/components/Article";
 import HeroHeader from "@/components/Hero/HeroHeader";
 import { getArticles } from "@/services/ArticleService";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import ArticleSkeleton from "@/components/Skeleton/ArticleSkeleton";
 
 export const metadata: Metadata = {
   title: "Articles - " + process.env.NEXT_PUBLIC_SITE_NAME,
@@ -23,24 +26,29 @@ export const metadata: Metadata = {
   description: "Explore the latest insights, news, and updates from PT Toho Technology Indonesia, a leader in software development, IT consulting, digital transformation, IoT solutions, and industrial automation.",
 };
 
-const Articles = async ({ searchParams }: { searchParams: { search?: string, category_id?: number } }) => {
-  const params = searchParams;
-  const search = params.search ?? "";
-  const category_id = params.category_id ?? "";
+interface PageProps {
+  params: Promise<{ [key: string]: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
-  let articles: any[] = [];
+const Articles = async ({ searchParams }: PageProps) => {
+  const resolvedParams = await searchParams;
+  const search = typeof resolvedParams.search === 'string' ? resolvedParams.search : undefined;
+  const category_id = typeof resolvedParams.category_id === 'string' ? Number(resolvedParams.category_id) : undefined;
 
-  try {
-    const res = await getArticles(category_id || null, search || null);
-    articles = res.data;
-    console.log({ articles })
-  } catch (error) {
-    console.error("Error fetching articles:", error);
-    articles = [];
-  }
+  const queryClient = new QueryClient();
+
+  // Prefetch the articles data
+  const articles = await queryClient.fetchQuery({
+    queryKey: ['articles', category_id, search],
+    queryFn: async () => {
+      const res = await getArticles(category_id, search);
+      return res.data;
+    }
+  });
 
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <HeroHeader
         title="Articles"
         breadcrumbs={[
@@ -48,8 +56,15 @@ const Articles = async ({ searchParams }: { searchParams: { search?: string, cat
           { label: "Articles" },
         ]}
       />
-      <ArticleList data={articles} isTitleHeader={false} search={search} category_id={Number(category_id)} />
-    </>
+      <Suspense fallback={<ArticleSkeleton />}>
+        <ArticleList
+          data={articles}
+          isTitleHeader={false}
+          search={search}
+          category_id={category_id}
+        />
+      </Suspense>
+    </HydrationBoundary>
   );
 };
 

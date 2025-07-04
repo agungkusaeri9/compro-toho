@@ -39,7 +39,7 @@ const Banner = () => {
           className="animate_top mx-auto  px-4 md:px-8 xl:mt-23 xl:px-0 w-full"
         >
           {/* Swiper Start */}
-          <div className="mb-20 pb-22.5 w-full">
+          <div className=" w-full">
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
@@ -58,7 +58,7 @@ const Banner = () => {
               {isLoading ? (
                 [...Array(1)].map((_, i) => (
                   <SwiperSlide key={`skeleton-${i}`} className="w-full">
-                    <div className="w-full h-180">
+                    <div className="w-full h-[100vh]">
                       <SkeletonBanner />
                     </div>
                   </SwiperSlide>
@@ -66,7 +66,7 @@ const Banner = () => {
               ) : (
                 banners?.map((data) => (
                   <SwiperSlide key={`banner-${data.id}`} className="w-full">
-                    <div className="w-full h-180">
+                    <div className="w-full h-[100vh]">
                       <SingleBanner data={data} />
                     </div>
                   </SwiperSlide>

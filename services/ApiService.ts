@@ -102,3 +102,33 @@ export const getSocialMedia = async (): Promise<ApiResponse<any[]>> => {
     };
   }
 };
+
+
+export const getProfileTohoIndo = async (): Promise<ApiResponse<any>> => {
+  try {
+    const res = await api.get("/api/profiles/indonesia");
+    return res.data;
+  } catch (error) {
+    return {
+      status: "error",
+      success: false,
+      message: "Failed to fetch profile toho indonesia",
+      data: [],
+    };
+  }
+};
+
+
+export const getProfileTohoJapan = async (): Promise<ApiResponse<any>> => {
+  try {
+    const res = await api.get("/api/profiles/japan");
+    return res.data;
+  } catch (error) {
+    return {
+      status: "error",
+      success: false,
+      message: "Failed to fetch profile toho japan",
+      data: [],
+    };
+  }
+};

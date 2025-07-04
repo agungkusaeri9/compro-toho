@@ -1,4 +1,3 @@
-
 import { Metadata } from "next";
 import SectionHeader from "../Common/SectionHeader";
 import BlogItem from "./BlogItem";
@@ -7,6 +6,7 @@ import { Article } from "@/types/article";
 import Loader from "../Loader";
 import { getArticleCategory } from "@/services/ArticleCategoryService";
 import CategoryDropdown from "../BlogCategory/CategoryDropdown";
+
 export async function generateMetadata(): Promise<Metadata> {
   // Ambil metadata untuk SEO jika perlu
   return {
@@ -15,8 +15,45 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ArticleList = async ({ isTitleHeader = true, data, search, category_id }: { isTitleHeader?: boolean, data: Article[], search?: string, category_id?: number }) => {
+const ArticleSkeleton = () => {
+  return (
+    <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:grid-cols-3 xl:gap-10">
+      {[...Array(6)].map((_, index) => (
+        <div key={index} className="animate-pulse">
+          <div className="rounded-md border border-stroke bg-white p-4 shadow-solid-13 dark:border-strokedark dark:bg-blacksection">
+            {/* Image Skeleton */}
+            <div className="mb-4 aspect-[97/60] w-full overflow-hidden rounded-md bg-gray-200 dark:bg-gray-700" />
 
+            {/* Title Skeleton */}
+            <div className="mb-3 h-6 w-3/4 rounded bg-gray-200 dark:bg-gray-700" />
+
+            {/* Description Skeleton */}
+            <div className="space-y-2">
+              <div className="h-4 w-full rounded bg-gray-200 dark:bg-gray-700" />
+              <div className="h-4 w-5/6 rounded bg-gray-200 dark:bg-gray-700" />
+              <div className="h-4 w-4/6 rounded bg-gray-200 dark:bg-gray-700" />
+            </div>
+
+            {/* Category and Date Skeleton */}
+            <div className="mt-4 flex items-center justify-between">
+              <div className="h-4 w-24 rounded bg-gray-200 dark:bg-gray-700" />
+              <div className="h-4 w-32 rounded bg-gray-200 dark:bg-gray-700" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+interface ArticleListProps {
+  data: Article[];
+  isTitleHeader?: boolean;
+  search?: string;
+  category_id?: number;
+}
+
+const ArticleList = async ({ isTitleHeader = true, data, search, category_id }: ArticleListProps) => {
   let categories: any[] = [];
 
   try {
@@ -54,22 +91,23 @@ const ArticleList = async ({ isTitleHeader = true, data, search, category_id }: 
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-          {!data ? (
-            <div className="col-span-full">
-              <Loader />
-            </div>
-          ) : data.length > 0 ? (
-            data.map((article, key) => (
+        {!data ? (
+          <>
+            <ArticleSkeleton />
+          </>
+        ) : data.length > 0 ? (
+          <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:grid-cols-3 xl:gap-10">
+            {data.map((article, key) => (
               <BlogItem data={article} key={key} />
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-full">No articles found.</p>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">No articles found.</p>
+        )}
       </div>
     </section>
   );
 };
 
+export { ArticleSkeleton };
 export default ArticleList;
