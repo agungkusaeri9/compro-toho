@@ -9,6 +9,7 @@ import Teams from "@/components/Teams";
 import Client from "@/components/Client";
 import Banner from "@/components/Banner";
 import AboutTohoIndo from "@/components/About/AboutTohoIndo";
+import OfficeLocation from "@/components/Office/OfficeLocation";
 
 export const metadata: Metadata = {
   title: "IoT solution - " + process.env.NEXT_PUBLIC_SITE_NAME,
@@ -35,12 +36,12 @@ export default function Home() {
     <main className="">
       <Banner />
       <About />
+      <Client />
       <Services />
       <Teams />
       <Testimonial />
+      <OfficeLocation />
       <FAQ />
-      <Client />
     </main>
-
   );
 }

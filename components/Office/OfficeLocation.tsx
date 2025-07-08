@@ -1,6 +1,5 @@
+"use client"
 import React from 'react'
-import { motion } from "framer-motion";
-import Image from 'next/image';
 import SectionHeader from '../Common/SectionHeader';
 import { getOfficeLocations } from '@/services/ApiService';
 import { useQuery } from '@tanstack/react-query';
@@ -17,14 +16,14 @@ const OfficeLocation = () => {
     });
     return (
         <>
-            <div className="py-16 px-4 md:px-10 bg-gray-50">
+            <div className="py-16 px-4 md:px-10">
                 <div className="mx-auto max-w-c-1315 px-4 md:px-8 xl:px-0 mb-5">
                     <div className="animate_top mx-auto text-center">
                         <SectionHeader
                             headerInfo={{
                                 title: `Office Location`,
-                                subtitle: `Latest News & Blogs`,
-                                description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus.`,
+                                subtitle: `Our Branches & Contact Points`,
+                                description: `Find our offices and branches across Indonesia. We are ready to serve you with local support and global expertise.`,
                             }}
                         />
                     </div>
@@ -37,7 +36,12 @@ const OfficeLocation = () => {
                         ))
                     ) : (
                         officeLocations?.map((location, key) => (
-                            <OfficeLocationSingle data={location} key={key} />
+                            <div
+                                key={key}
+                                className="group rounded-2xl border border-blue-100 bg-white dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:border-blue-400 transition-all p-8 flex flex-col items-center text-center"
+                            >
+                                <OfficeLocationSingle data={location} />
+                            </div>
                         ))
                     )}
                 </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import Image from "next/image";
+
 type Breadcrumb = {
     label: string;
     href?: string;
@@ -9,7 +11,7 @@ type Breadcrumb = {
 const HeroHeader = ({
     title,
     breadcrumbs,
-    image = '/images/hero/hero-header.avif',
+    image = '/images/hero/hero-default-1.png',
 }: {
     title: string;
     breadcrumbs: Breadcrumb[];
@@ -17,10 +19,13 @@ const HeroHeader = ({
 }) => {
     return (
         <section className="relative mt-[100px] overflow-hidden max-h-[500px]">
-            <img
+            <Image
                 src={image}
-                className="w-full object-cover brightness-60"
                 alt={title}
+                width={1200}
+                height={600}
+                className="w-full object-cover brightness-60"
+                priority
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
                 <h1 className="text-4xl font-bold">{title}</h1>

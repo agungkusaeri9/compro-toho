@@ -8,33 +8,39 @@ const menuData: Menu[] = [
     path: "/",
   },
   {
+    id: 2.3,
+    title: "About TOHO",
+    newTab: false,
+    path: "/about",
+  },
+  {
     id: 2.1,
     title: "Products",
     newTab: false,
-    path: "/",
+    path: "/products",
   },
   {
     id: 3,
-    title: "Fa System",
+    title: "FA System",
     newTab: false,
     submenu: [
       {
         id: 31,
         title: "Visualization",
         newTab: false,
-        path: "/",
+        path: "/visualization",
       },
       {
         id: 34,
         title: "Digitalization",
         newTab: false,
-        path: "/",
+        path: "/digitalization",
       },
       {
         id: 35,
         title: "Process Improvement",
         newTab: false,
-        path: "/",
+        path: "/process-improve",
       },
     ],
   },
@@ -45,15 +51,15 @@ const menuData: Menu[] = [
     submenu: [
       {
         id: 36,
-        title: "Controll Panel",
+        title: "Control Panel",
         newTab: false,
-        path: "/",
+        path: "/control-panel",
       },
       {
         id: 37,
         title: "Industrial M/C",
         newTab: false,
-        path: "/",
+        path: "/industrial",
       }
     ],
   },
@@ -64,12 +70,7 @@ const menuData: Menu[] = [
     path: "/articles",
   },
 
-  {
-    id: 2.3,
-    title: "About",
-    newTab: false,
-    path: "/about",
-  },
+
   {
     id: 2.4,
     title: "Contact",

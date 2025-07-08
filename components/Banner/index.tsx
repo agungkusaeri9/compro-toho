@@ -58,7 +58,7 @@ const Banner = () => {
               {isLoading ? (
                 [...Array(1)].map((_, i) => (
                   <SwiperSlide key={`skeleton-${i}`} className="w-full">
-                    <div className="w-full h-[100vh]">
+                    <div className="w-full h-[90vh]">
                       <SkeletonBanner />
                     </div>
                   </SwiperSlide>
@@ -66,7 +66,7 @@ const Banner = () => {
               ) : (
                 banners?.map((data) => (
                   <SwiperSlide key={`banner-${data.id}`} className="w-full">
-                    <div className="w-full h-[100vh]">
+                    <div className="w-full h-[90vh]">
                       <SingleBanner data={data} />
                     </div>
                   </SwiperSlide>
