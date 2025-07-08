@@ -22,6 +22,7 @@ const Teams = () => {
       return response.data;
     }
   });
+
   return (
     <MainContent>
       <SectionHeader

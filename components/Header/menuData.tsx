@@ -70,7 +70,12 @@ const menuData: Menu[] = [
     path: "/articles",
   },
 
-
+  // {
+  //   id: 2.2,
+  //   title: "Careers",
+  //   newTab: false,
+  //   path: "/careers",
+  // },
   {
     id: 2.4,
     title: "Contact",

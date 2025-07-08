@@ -7,12 +7,11 @@ export const getArticles = async (
   search: string | null = null,
 ): Promise<ApiResponse<Article[]>> => {
   try {
-    const res = await api.get("/api/articles", {
-      params: {
-        category_id,
-        search,
-      },
-    });
+    const params: any = {};
+    if (category_id) params.category_id = category_id;
+    if (search) params.search = search;
+
+    const res = await api.get("/api/articles", { params });
 
     return res.data;
   } catch (error) {
