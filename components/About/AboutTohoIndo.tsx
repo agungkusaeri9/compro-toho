@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getProfileTohoIndo } from '@/services/ApiService';
 import Image from 'next/image';
 import { AboutSkeleton } from '../Skeleton/AboutSkeleton';
+import OfficeLocation from '../Office/OfficeLocation';
 
 
 const AboutTohoIndo = () => {
@@ -51,58 +52,80 @@ const AboutTohoIndo = () => {
             {isLoading ? (
                 <AboutSkeleton />
             ) : (
-                <div className="grid gap-10 md:grid-cols-2">
-                    <motion.div
-                        variants={{
-                            hidden: {
-                                opacity: 0,
-                                x: -20,
-                            },
-                            visible: {
-                                opacity: 1,
-                                x: 0,
-                            },
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        viewport={{ once: true }}
-                        className="animate_left relative mx-auto items-center hidden md:block max-w-md"
-                    >
-                        {/* <div className="relative w-full h-[400px]"> */}
-                        <img
-                            src={profile?.image_url}
-                            alt={profile?.name}
-                            className="object-contain transition-transform duration-300 group-hover:scale-105 rounded-lg"
-                        // fill
-                        />
-                        {/* </div> */}
-                    </motion.div>
+                <div>
+                    <div className="grid gap-10 md:grid-cols-2">
+                        <motion.div
+                            variants={{
+                                hidden: {
+                                    opacity: 0,
+                                    x: -20,
+                                },
+                                visible: {
+                                    opacity: 1,
+                                    x: 0,
+                                },
+                            }}
+                            initial="hidden"
+                            whileInView="visible"
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="animate_left relative mx-auto items-center hidden md:block max-w-md"
+                        >
+                            {/* <div className="relative w-full h-[400px]"> */}
+                            <img
+                                src={profile?.image_url}
+                                alt={profile?.name}
+                                className="object-contain transition-transform duration-300 group-hover:scale-105 rounded-lg"
+                            // fill
+                            />
+                            {/* </div> */}
+                        </motion.div>
 
-                    <motion.div
-                        variants={{
-                            hidden: {
-                                opacity: 0,
-                                x: -20,
-                            },
-                            visible: {
-                                opacity: 1,
-                                x: 0,
-                            },
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        viewport={{ once: true }}
-                        className="animate_right relative mx-auto items-center hidden md:block"
-                    >
-                        <p className="text-gray-700 leading-relaxed text-justify">
-                            {profile?.description}
-                        </p>
-                    </motion.div>
+                        <motion.div
+                            variants={{
+                                hidden: {
+                                    opacity: 0,
+                                    x: -20,
+                                },
+                                visible: {
+                                    opacity: 1,
+                                    x: 0,
+                                },
+                            }}
+                            initial="hidden"
+                            whileInView="visible"
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="animate_right relative mx-auto items-center hidden md:block"
+                        >
+                            <p className="text-gray-700 leading-relaxed text-justify">
+                                {profile?.description}
+                            </p>
+
+                            <table className="min-w-[300px] mt-4 rounded overflow-hidden border-collapse">
+                                <tbody>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Established</th>
+                                        <td className="px-3 py-2 border border-gray-400">November 2012</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Employee</th>
+                                        <td className="px-3 py-2 border border-gray-400">Japanese x1, Indonesian x10</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Capital</th>
+                                        <td className="px-3 py-2 border border-gray-400">USD 300,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </motion.div>
+                    </div>
+
+                    <OfficeLocation />
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 };
 

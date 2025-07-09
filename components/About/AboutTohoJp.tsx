@@ -69,7 +69,89 @@ const AboutTohoJp = () => {
                         viewport={{ once: true }}
                         className="animate_left relative mx-auto items-center hidden md:block max-w-2xl"
                     >
-                        <div className="grid grid-cols-1 gap-6 p-4 bg-gray-50 rounded-xl shadow-sm">
+                        <div className="grid grid-cols-1 gap-6 p-4 rounded-xl shadow-sm">
+                            <div className="space-y-4">
+                                <h3 className="text-2xl font-bold text-gray-800">About {profile?.name}</h3>
+                                <p className="text-gray-600 leading-relaxed text-justify">
+                                    {profile?.description}
+                                </p>
+                            </div>
+                            <table className="min-w-[300px] mt-4 rounded overflow-hidden border-collapse">
+                                <tbody>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Founded</th>
+                                        <td className="px-3 py-2 border border-gray-400">1829</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Established</th>
+                                        <td className="px-3 py-2 border border-gray-400">Oct 1932</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Address</th>
+                                        <td className="px-3 py-2 border border-gray-400">Nagoya, Aichi - Japan</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Capital</th>
+                                        <td className="px-3 py-2 border border-gray-400">JPY 430M</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Employee</th>
+                                        <td className="px-3 py-2 border border-gray-400">700 (total group)</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan={2} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Reprsentative</th>
+                                        <td className="px-3 py-2 border border-gray-400">Chairman (Mr.) Kazuo Tomia</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">President (Mr.) Hideyuki Tomia</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan={5} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Domesti Group</th>
+                                        <td className="px-3 py-2 border border-gray-400">Inazawa Manufacturing R&D</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">Kyoto Office</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">Tokyo Branch</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">Osaka Branch</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">Kyusyu R&D Centre, others</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan={2} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Everseas Group</th>
+                                        <td className="px-3 py-2 border border-gray-400">TOHO TECHNOLOGY (Shanghai) CO, LTD</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="px-3 py-2 border border-gray-400">TOHO TECHNOLOGY INC. (USA)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        variants={{
+                            hidden: {
+                                opacity: 0,
+                                x: -20,
+                            },
+                            visible: {
+                                opacity: 1,
+                                x: 0,
+                            },
+                        }}
+                        initial="hidden"
+                        whileInView="visible"
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true }}
+                        className="animate_right relative mx-auto items-center hidden md:block"
+                    >
+                        <div className="space-y-8 p-6 ">
                             {profile?.image_urls && profile.image_urls.length > 0 && (
                                 <>
                                     <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -94,89 +176,8 @@ const AboutTohoJp = () => {
                                     )}
                                 </>
                             )}
-                        </div>
-                    </motion.div>
 
-                    <motion.div
-                        variants={{
-                            hidden: {
-                                opacity: 0,
-                                x: -20,
-                            },
-                            visible: {
-                                opacity: 1,
-                                x: 0,
-                            },
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        viewport={{ once: true }}
-                        className="animate_right relative mx-auto items-center hidden md:block"
-                    >
-                        <div className="space-y-8 p-6 ">
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-gray-800">About {profile?.name}</h3>
-                                <p className="text-gray-600 leading-relaxed text-justify">
-                                    {profile?.description}
-                                </p>
-                            </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-4">
-                                    <h4 className="text-xl font-semibold text-gray-800 border-b pb-2">Company Details</h4>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <span className="font-medium text-gray-700 min-w-[100px]">Established:</span>
-                                            <span className="text-gray-600">{new Date(profile?.established).toLocaleDateString()}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="font-medium text-gray-700 min-w-[100px]">Address:</span>
-                                            <span className="text-gray-600">{profile?.address}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="font-medium text-gray-700 min-w-[100px]">Employees:</span>
-                                            <span className="text-gray-600">{profile?.employees}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="font-medium text-gray-700 min-w-[100px]">Chairman:</span>
-                                            <span className="text-gray-600">{profile?.chairman}</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <span className="font-medium text-gray-700 min-w-[100px]">President:</span>
-                                            <span className="text-gray-600">{profile?.president}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="space-y-4">
-                                    <h4 className="text-xl font-semibold text-gray-800 border-b pb-2">Group Companies</h4>
-                                    <div className="space-y-6">
-                                        <div>
-                                            <h5 className="font-medium text-gray-700 mb-2">Domestic Group</h5>
-                                            <ul className="space-y-2">
-                                                {profile?.domestic_group?.map((group, index) => (
-                                                    <li key={index} className="flex items-center text-gray-600">
-                                                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                                        {group.name}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h5 className="font-medium text-gray-700 mb-2">Overseas Group</h5>
-                                            <ul className="space-y-2">
-                                                {profile?.overseas_group?.map((group, index) => (
-                                                    <li key={index} className="flex items-center text-gray-600">
-                                                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                                                        {group.name}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </motion.div>
                 </div>

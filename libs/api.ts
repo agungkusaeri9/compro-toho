@@ -15,7 +15,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error("[API Error]", error);
+    // console.error("[API Error]", error);
 
     if (error.code === "ECONNABORTED") {
       toast.error("Request timeout. Server tidak merespon.");
@@ -23,8 +23,9 @@ api.interceptors.response.use(
       // Tidak ada response dari server, bisa karena server down / offline
       toast.error("Tidak bisa terhubung ke server. Coba lagi nanti.");
     } else {
-      // Error lainnya dari response, seperti 404, 500, dll.
-      toast.error(`Terjadi kesalahan: ${error.response.statusText}`);
+      // toast.error(
+      //   `Terjadi kesalahan: ${error.response.data.message || "Unknown error"}`,
+      // );
     }
 
     return Promise.reject(error);

@@ -3,8 +3,8 @@ import { Toaster } from "react-hot-toast";
 
 const ToasterContext = () => {
   return (
-    <div>
-      <Toaster position="top-center" reverseOrder={false} />
+    <div className="z-999">
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 };

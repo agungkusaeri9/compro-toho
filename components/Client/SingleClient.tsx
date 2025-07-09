@@ -28,16 +28,20 @@ const SingleClient = ({ data }: { data: Client }) => {
         className="animate_top mx-w-full relative block h-25 w-[98px] "
       >
         <Image
-          className="opacity-65 object-contain h-full w-full transition-all duration-300 hover:opacity-100 dark:hidden"
+          className="opacity-65 object-contain  transition-all duration-300 hover:opacity-100 dark:hidden"
           src={image}
           alt={name}
-          fill
+          // fill
+          height={100}
+          width={100}
         />
         <Image
           className="hidden object-cover opacity-50 transition-all duration-300 hover:opacity-100 dark:block"
           src={image}
           alt={name}
-          fill
+          // fill
+          height={100}
+          width={100}
         />
       </motion.a>
     </>

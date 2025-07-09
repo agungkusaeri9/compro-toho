@@ -5,6 +5,7 @@ import { getOfficeLocations } from '@/services/ApiService';
 import { useQuery } from '@tanstack/react-query';
 import SkeletonOfficeLocation from './SkeletonOfficeLocation';
 import OfficeLocationSingle from './SingleOfficeLocation';
+import Link from 'next/link';
 
 const OfficeLocation = () => {
     const { data: officeLocations, isLoading } = useQuery({
@@ -14,6 +15,7 @@ const OfficeLocation = () => {
             return response.data;
         }
     });
+
     return (
         <>
             <div className="py-16 px-4 md:px-10">
@@ -38,7 +40,7 @@ const OfficeLocation = () => {
                         officeLocations?.map((location, key) => (
                             <div
                                 key={key}
-                                className="group rounded-2xl border border-blue-100 bg-white dark:bg-gray-900 shadow-xl hover:shadow-2xl hover:border-blue-400 transition-all p-8 flex flex-col items-center text-center"
+                                className="group rounded-xl border border-blue-100 bg-white dark:bg-gray-900 shadow-md hover:shadow-xl hover:border-blue-400 transition-all  flex flex-col items-center text-center"
                             >
                                 <OfficeLocationSingle data={location} />
                             </div>

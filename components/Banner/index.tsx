@@ -66,7 +66,7 @@ const Banner = () => {
               ) : (
                 banners?.map((data) => (
                   <SwiperSlide key={`banner-${data.id}`} className="w-full">
-                    <div className="w-full h-[90vh]">
+                    <div className="w-full h-[580px]">
                       <SingleBanner data={data} />
                     </div>
                   </SwiperSlide>

@@ -88,7 +88,6 @@ export const getOfficeLocations = async (): Promise<ApiResponse<any[]>> => {
   }
 };
 
-
 export const getSocialMedia = async (): Promise<ApiResponse<any[]>> => {
   try {
     const res = await api.get("/api/social-media");
@@ -102,7 +101,6 @@ export const getSocialMedia = async (): Promise<ApiResponse<any[]>> => {
     };
   }
 };
-
 
 export const getProfileTohoIndo = async (): Promise<ApiResponse<any>> => {
   try {
@@ -118,7 +116,6 @@ export const getProfileTohoIndo = async (): Promise<ApiResponse<any>> => {
   }
 };
 
-
 export const getProfileTohoJapan = async (): Promise<ApiResponse<any>> => {
   try {
     const res = await api.get("/api/profiles/japan");
@@ -130,5 +127,14 @@ export const getProfileTohoJapan = async (): Promise<ApiResponse<any>> => {
       message: "Failed to fetch profile toho japan",
       data: [],
     };
+  }
+};
+
+export const contactStore = async (form: any): Promise<ApiResponse<any>> => {
+  try {
+    const res = await api.post("/api/contact", form);
+    return res.data;
+  } catch (error) {
+    throw error?.response?.data;
   }
 };

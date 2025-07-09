@@ -1,25 +1,66 @@
 "use client";
+import { contactStore } from "@/services/ApiService";
+import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    phone_number: "",
+    message: ""
+  })
+  const [hasMounted, setHasMounted] = useState(false);
 
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
+  const { mutate: createMutation, isPending } = useMutation({
+    mutationFn: async (dataInput) => {
+      const response = await contactStore(dataInput);
+      return response;
+
+    },
+    onSuccess: (data) => {
+      toast.success(data.message || "Message sent successfully!");
+      setForm({
+        name: "",
+        email: "",
+        subject: "",
+        phone_number: "",
+        message: ""
+      });
+    },
+    onError: (error: any) => {
+      if (error.code == 422) {
+        toast.error("Please fill in all required fields.");
+        return;
+      } else {
+        toast.error(error.message || "Failed to send message. Please try again later.");
+      }
+    }
+  });
+
+  useEffect(() => {
     setHasMounted(true);
   }, []);
+
   if (!hasMounted) {
     return null;
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert("Fitur on development, coming soon!");
-    return;
-    // Handle form submission logic here
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    createMutation(form as any);
+  };
   return (
     <>
       {/* <!-- ===== Contact Start ===== --> */}
@@ -71,13 +112,19 @@ const Contact = () => {
                 <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
-                    placeholder="Full name"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Full name*"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="email"
-                    placeholder="Email address"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Email address*"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
                 </div>
@@ -85,12 +132,18 @@ const Contact = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
-                    placeholder="Subject"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Subject*"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="phone_number"
+                    value={form.phone_number}
+                    onChange={handleChange}
                     placeholder="Phone number"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -98,7 +151,10 @@ const Contact = () => {
 
                 <div className="mb-11.5 flex">
                   <textarea
-                    placeholder="Message"
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Message*"
                     rows={4}
                     className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-hidden dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                   ></textarea>
@@ -139,9 +195,9 @@ const Contact = () => {
 
                   <button
                     aria-label="send message"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-black px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark"
+                    className="inline-flex hover:cursor-pointer items-center gap-2.5 rounded-full bg-black px-6 py-3 font-medium text-white duration-300 ease-in-out hover:bg-blackho dark:bg-btndark"
                   >
-                    Send Message
+                    {isPending ? "Sending..." : "Send Message"}
                     <svg
                       className="fill-white"
                       width="14"

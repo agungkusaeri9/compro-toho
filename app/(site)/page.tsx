@@ -40,7 +40,7 @@ export default function Home() {
       <Services />
       <Teams />
       <Testimonial />
-      <OfficeLocation />
+      {/* <OfficeLocation /> */}
       <FAQ />
     </main>
   );
