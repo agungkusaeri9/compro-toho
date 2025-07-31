@@ -73,12 +73,12 @@ const SingleBlogPage = async ({ params }: any) => {
             <div className="lg:w-2/3">
               <div className="animate_top rounded-md border border-stroke bg-white p-7.5 shadow-solid-13 dark:border-strokedark dark:bg-blacksection md:p-10">
                 <div className="mb-10 w-full overflow-hidden">
-                  <div className="relative aspect-97/60 w-full sm:aspect-97/44">
+                  <div className="relative w-full h-[500px] sm:h-[600px]">
                     <Image
                       src={article.image_url}
                       alt={article.title}
                       fill
-                      className="rounded-md object-cover object-center"
+                      className="rounded-md "
                     />
                   </div>
                 </div>

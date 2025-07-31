@@ -1,4 +1,5 @@
 "use client";
+import ContactConfig from "@/data/contact";
 import { contactStore } from "@/services/ApiService";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -15,6 +16,7 @@ const Contact = () => {
     message: ""
   })
   const [hasMounted, setHasMounted] = useState(false);
+  const { address, email, phone } = ContactConfig;
 
   const { mutate: createMutation, isPending } = useMutation({
     mutationFn: async (dataInput) => {
@@ -240,7 +242,7 @@ const Contact = () => {
 
               <div className="5 mb-7">
                 <h3 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Our Loaction
+                  Our Location
                 </h3>
                 <p>{process.env.NEXT_PUBLIC_ADDRESS}</p>
               </div>
@@ -249,16 +251,16 @@ const Contact = () => {
                   Email Address
                 </h3>
                 <p>
-                  <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>{process.env.NEXT_PUBLIC_EMAIL}</a>
+                  <a href={`mailto:${email}`}>{email}</a>
                 </p>
               </div>
               <div>
                 <h4 className="mb-4 text-metatitle3 font-medium text-black dark:text-white">
-                  Phone Number
+                  Phone
                 </h4>
                 <p>
                   <a href="#">
-                    {process.env.NEXT_PUBLIC_PHONE}
+                    {phone}
                   </a>
                 </p>
               </div>

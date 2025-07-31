@@ -5,96 +5,11 @@ import Image from "next/image";
 import SectionHeader from "../Common/SectionHeader";
 import { useState } from "react";
 import Cto from "../Section/Cto";
-
-// TOHO Products data based on Japanese and Indonesian websites
-const tohoProducts = [
-    {
-        id: 1,
-        title: "PLINE II",
-        description: "PLINE is a device that transmits Ethernet or RS485 communication by superimposing it on AC100V/AC200V power lines.",
-        category: "Communication",
-        image: "/images/products/pline.png",
-        content: (
-            <div>
-                <h3 className="text-xl font-semibold mb-2">Tentang PLINE II</h3>
-                <p className="mb-4">PLINE II adalah perangkat komunikasi industri yang memungkinkan transmisi data melalui kabel 2-wire Ethernet/RS485. Dirancang untuk keandalan tinggi di lingkungan industri, PLINE II mendukung instalasi mudah, konfigurasi fleksibel, dan komunikasi jarak jauh. Cocok untuk aplikasi otomasi pabrik, monitoring, dan integrasi sistem industri modern.</p>
-                <h4 className="text-lg font-semibold mb-1">Fitur Utama</h4>
-                <ul className="list-disc ml-6 mb-4">
-                    <li>Komunikasi 2-wire Ethernet/RS485</li>
-                    <li>Keandalan industri</li>
-                    <li>Instalasi dan konfigurasi mudah</li>
-                    <li>Kemampuan komunikasi jarak jauh</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-1">Aplikasi</h4>
-                <p className="mb-4">Digunakan pada otomasi pabrik, sistem monitoring, integrasi mesin, dan berbagai aplikasi industri lainnya yang membutuhkan komunikasi data yang stabil dan efisien.</p>
-                <h4 className="text-lg font-semibold mb-1">Spesifikasi Teknis</h4>
-                <ul className="list-disc ml-6 mb-4">
-                    <li>Protokol: Ethernet/RS485</li>
-                    <li>Jarak transmisi: Hingga 1200 meter</li>
-                    <li>Temperatur operasi: -20°C hingga 60°C</li>
-                    <li>Dimensi: 120 x 80 x 35 mm</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-1">Keunggulan</h4>
-                <p className="mb-4">PLINE II menawarkan solusi hemat biaya untuk komunikasi industri tanpa mengorbankan keandalan dan performa. Dengan desain kompak dan fitur canggih, perangkat ini menjadi pilihan utama untuk modernisasi sistem industri Anda.</p>
-                <h4 className="text-lg font-semibold mb-1">Testimoni Pengguna</h4>
-                <blockquote className="border-l-4 border-blue-600 pl-4 italic text-gray-600 dark:text-gray-300 mb-4">"Sejak menggunakan PLINE II, sistem monitoring pabrik kami menjadi lebih stabil dan mudah diintegrasikan dengan perangkat lain."</blockquote>
-                <p className="mb-2">Untuk informasi lebih lanjut, silakan hubungi tim sales kami atau unduh brosur produk di website resmi TOHO.</p>
-            </div>
-        ),
-        features: [
-            "2-wire Ethernet/RS485 communication",
-            "Industrial grade reliability",
-            "Easy installation and configuration",
-            "Long-distance communication capability"
-        ],
-        specs: "Industrial Communication Device"
-    },
-    {
-        id: 2,
-        title: "TOLINE",
-        description: "TOLINE multiplex transmission device is a simple communication that transmits many signals over a pair of wires, and supports various systems in the automotive and material handling industries.",
-        category: "Communication",
-        image: "/images/products/toline.jpg",
-        content: (
-            <div>
-                <h3 className="text-xl font-semibold mb-2">Tentang TOLINE</h3>
-                <p className="mb-4">TOLINE adalah perangkat multi-transmisi untuk komunikasi data industri yang mendukung berbagai protokol dan aplikasi. Dengan kemampuan transmisi yang andal dan kompatibilitas tinggi, TOLINE sangat ideal untuk integrasi sistem, pengumpulan data, dan pengiriman sinyal di lingkungan industri yang kompleks.</p>
-                <h4 className="text-lg font-semibold mb-1">Fitur Utama</h4>
-                <ul className="list-disc ml-6 mb-4">
-                    <li>Kemampuan multi-transmisi</li>
-                    <li>Komunikasi data industri</li>
-                    <li>Transmisi sinyal yang andal</li>
-                    <li>Kompatibel dengan berbagai protokol</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-1">Aplikasi</h4>
-                <p className="mb-4">Ideal untuk integrasi sistem, pengumpulan data mesin, dan pengiriman sinyal di lingkungan industri yang membutuhkan fleksibilitas dan keandalan tinggi.</p>
-                <h4 className="text-lg font-semibold mb-1">Spesifikasi Teknis</h4>
-                <ul className="list-disc ml-6 mb-4">
-                    <li>Protokol: Multi-protocol support</li>
-                    <li>Jarak transmisi: Hingga 1500 meter</li>
-                    <li>Temperatur operasi: -10°C hingga 70°C</li>
-                    <li>Dimensi: 130 x 85 x 40 mm</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-1">Keunggulan</h4>
-                <p className="mb-4">TOLINE memberikan solusi komunikasi data yang fleksibel dan dapat diandalkan untuk berbagai kebutuhan industri, mendukung efisiensi dan produktivitas operasional.</p>
-                <h4 className="text-lg font-semibold mb-1">Testimoni Pengguna</h4>
-                <blockquote className="border-l-4 border-blue-600 pl-4 italic text-gray-600 dark:text-gray-300 mb-4">"TOLINE memudahkan integrasi antar mesin di pabrik kami dan sangat stabil dalam pengiriman data."</blockquote>
-                <p className="mb-2">Hubungi tim sales kami untuk konsultasi solusi terbaik atau unduh dokumen teknis di website TOHO.</p>
-            </div>
-        ),
-        features: [
-            "Multi-transmission capability",
-            "Industrial data communication",
-            "Reliable signal transmission",
-            "Compatible with various protocols"
-        ],
-        specs: "Multi-Transmission Device"
-    }
-];
-
+import ProductData from "./ProductData";
 
 const ProductsIndex = () => {
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const tohoProducts = ProductData;
     const [showModal, setShowModal] = useState(false);
 
     return (

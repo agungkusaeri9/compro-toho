@@ -5,94 +5,18 @@ import Image from "next/image";
 import SectionHeader from "../Common/SectionHeader";
 import Cto from "../Section/Cto";
 import { useState } from "react";
+import { ControlPanelExamplesData, ControlPanelProblemsSolved, ControlPanelServicesData, ControlPanelStopSolutionsData } from "@/data/ControlPanelData";
 
 // Control Panel services data
-const controlPanelServices = [
-    {
-        id: 1,
-        title: "New Panel Manufacturing",
-        description: "Custom control panel design and manufacturing for your specific requirements",
-        icon: "🏭",
-        features: ["Custom design", "Quality manufacturing", "Local production", "Cost optimization"]
-    },
-    {
-        id: 2,
-        title: "Panel Renewal",
-        description: "Upgrade and modernize existing control panels to current standards",
-        icon: "🔄",
-        features: ["Old to new conversion", "Component replacement", "System modernization", "Performance upgrade"]
-    },
-    {
-        id: 3,
-        title: "Component Replacement",
-        description: "Replace outdated components with modern, reliable alternatives",
-        icon: "⚙️",
-        features: ["Parts replacement", "Compatibility testing", "Quality assurance", "Reliability improvement"]
-    },
-    {
-        id: 4,
-        title: "After-Sales Service",
-        description: "Localized maintenance and support services in Indonesia",
-        icon: "🔧",
-        features: ["Local support", "Preventive maintenance", "Emergency repairs", "Technical assistance"]
-    }
-];
+const controlPanelServices = ControlPanelServicesData;
 
 // Control Panel examples
-const controlPanelExamples = [
-    {
-        id: 1,
-        image: "/images/control-panel/cp1.jpg",
-    },
-    {
-        id: 2,
-        image: "/images/control-panel/cp2.jpg",
-    },
-    {
-        id: 3,
-        image: "/images/control-panel/cp3.jpg",
-    },
-    {
-        id: 4,
-        image: "/images/control-panel/cp4.jpg",
-    },
-    {
-        id: 5,
-        image: "/images/control-panel/cp5.jpg",
-    },
-    {
-        id: 6,
-        image: "/images/control-panel/cp6.jpg",
-    },
-];
+const controlPanelExamples = ControlPanelExamplesData;
 
 // Common problems solved
-const problemsSolved = [
-    {
-        id: 1,
-        title: "Minimize Cost",
-        description: "Significantly reduce your manufacturing expenses by producing control panels locally in Indonesia, eliminating high import and logistics costs.",
-        icon: "💰"
-    },
-    {
-        id: 2,
-        title: "One Stop Solution",
-        description: "Enjoy hassle-free after-sales service and maintenance with our local Indonesian support team, ensuring quick response and minimal downtime.",
-        icon: "🏠"
-    },
-    {
-        id: 3,
-        title: "Japanese Quality",
-        description: "Benefit from Japanese engineering standards and expertise, even when upgrading or refurbishing older machines for optimal performance.",
-        icon: "🇯🇵"
-    },
-    {
-        id: 4,
-        title: "World Wide Maker Product",
-        description: "Access globally recognized replacement parts and solutions, overcoming limitations of support from overseas suppliers and ensuring continuous operation.",
-        icon: "📦"
-    }
-];
+const problemsSolved = ControlPanelProblemsSolved;
+
+const controlOneStopSolutions = ControlPanelStopSolutionsData;
 
 const ControlPanelPageIndex = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -100,59 +24,6 @@ const ControlPanelPageIndex = () => {
 
     return (
         <div className='mb-20'>
-            {/* Hero Section */}
-            {/* <div className="relative bg-gradient-to-br from-orange-50 to-red-100 dark:from-gray-900 dark:to-gray-800 py-20">
-                <div className="mx-auto max-w-c-1390 px-4 md:px-8 xl:px-0">
-                    <motion.div
-                        variants={{
-                            hidden: {
-                                opacity: 0,
-                                y: -20,
-                            },
-                            visible: {
-                                opacity: 1,
-                                y: 0,
-                            },
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <div className="mb-6 inline-block rounded-full bg-orange-100 px-6 py-2 dark:bg-gray-800">
-                            <span className="text-lg font-semibold text-orange-600 dark:text-orange-400">
-                                TOHO's One-Stop Solution
-                            </span>
-                        </div>
-                        <h1 className="mb-6 text-4xl font-bold text-black dark:text-white md:text-5xl lg:text-6xl">
-                            Control <span className="text-orange-600">Panel</span>
-                        </h1>
-                        <p className="mx-auto mb-8 max-w-3xl text-lg text-gray-600 dark:text-gray-300">
-                            We are available for making new panel, and also available for re-newing current panel.
-                            <br />
-                            <span className="font-semibold text-orange-600">If you have difficulties with above matters, please contact to us</span>
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="rounded-lg bg-orange-600 px-8 py-3 text-white transition-all hover:bg-orange-700"
-                            >
-                                Get Quote
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="rounded-lg border-2 border-orange-600 px-8 py-3 text-orange-600 transition-all hover:bg-orange-600 hover:text-white dark:text-orange-400"
-                            >
-                                Request Consultation
-                            </motion.button>
-                        </div>
-                    </motion.div>
-                </div>
-            </div> */}
-
             {/* Problems Solved Section */}
             <div className="py-20">
                 <div className="mx-auto max-w-c-1390 px-4 md:px-8 xl:px-0">
@@ -313,122 +184,27 @@ const ControlPanelPageIndex = () => {
                     />
 
                     <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-1</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Spec Overall
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                We thoroughly analyze your requirements to provide the most suitable control panel specifications, ensuring optimal performance and cost-effectiveness for your operations
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-2</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Design Develop
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Our experienced engineers design and develop control panels tailored to your needs, utilizing the latest technology and international standards for reliability and safety.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-3</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Material Prepare
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                We source high-quality materials and components from trusted global brands, guaranteeing durability, compatibility, and long-term support for your control panels.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-4</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Production & Inspection
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Our production process follows strict quality control and inspection procedures, ensuring every control panel meets rigorous standards before delivery to your facility.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-5</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Installation
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Our skilled technicians handle the installation process efficiently and safely, minimizing downtime and ensuring seamless integration with your existing systems.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            initial="hidden"
-                            whileInView="visible"
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
-                        >
-                            <div className="mb-4 text-4xl">Step-6</div>
-                            <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
-                                Commisioning
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                We provide comprehensive commissioning services, including testing and fine-tuning, to ensure your control panels operate flawlessly and deliver maximum value from day one.
-                            </p>
-                        </motion.div>
+                        {controlOneStopSolutions?.map((data, index) => (
+                            <motion.div
+                                variants={{
+                                    hidden: { opacity: 0, y: 20 },
+                                    visible: { opacity: 1, y: 0 },
+                                }}
+                                initial="hidden"
+                                whileInView="visible"
+                                transition={{ duration: 0.5 }}
+                                viewport={{ once: true }}
+                                className="rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800"
+                            >
+                                <div className="mb-4 text-4xl">{data.title}</div>
+                                <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">
+                                    {data.sub_title}
+                                </h3>
+                                <p className="text-gray-600 dark:text-gray-300">
+                                    {data.description}
+                                </p>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>

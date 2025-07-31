@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { AboutSkeleton } from '../Skeleton/AboutSkeleton';
 import { getProfileTohoJapan } from '@/services/ApiService';
+import TohoJapanConfig from '@/data/TohoJapanConfig';
 
 
 const AboutTohoJp = () => {
@@ -16,6 +17,7 @@ const AboutTohoJp = () => {
             return response.data;
         }
     });
+    const { section_title, section_subtitle, section_description, name, description } = TohoJapanConfig;
 
     return (
         <>
@@ -39,9 +41,9 @@ const AboutTohoJp = () => {
                 >
                     <SectionHeader
                         headerInfo={{
-                            title: `About ${profile?.name}`,
-                            subtitle: "Leading Innovation from Our Headquarters",
-                            description: `As the central hub of ${profile?.name}, our headquarters is where innovation, strategy, and cutting-edge technology come together. From here, we lead the development of reliable IT and IoT solutions tailored to meet the needs of clients across various industries. Our commitment to excellence begins at the core — where ideas turn into impactful solutions.`,
+                            title: section_title,
+                            subtitle: section_subtitle,
+                            description: section_description,
                         }}
                     />
 
@@ -71,9 +73,9 @@ const AboutTohoJp = () => {
                     >
                         <div className="grid grid-cols-1 gap-6 p-4 rounded-xl shadow-sm">
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-gray-800">About {profile?.name}</h3>
+                                <h3 className="text-2xl font-bold text-gray-800">About {name}</h3>
                                 <p className="text-gray-600 leading-relaxed text-justify">
-                                    {profile?.description}
+                                    {description}
                                 </p>
                             </div>
                             <table className="min-w-[300px] mt-4 rounded overflow-hidden border-collapse">
@@ -99,14 +101,11 @@ const AboutTohoJp = () => {
                                         <td className="px-3 py-2 border border-gray-400">700 (total group)</td>
                                     </tr>
                                     <tr>
-                                        <th rowSpan={2} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Reprsentative</th>
-                                        <td className="px-3 py-2 border border-gray-400">Chairman (Mr.) Kazuo Tomia</td>
+                                        <th className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Representative</th>
+                                        <td className="px-3 py-2 border border-gray-400">President (Mr.) Hideyuki Tomita</td>
                                     </tr>
                                     <tr>
-                                        <td className="px-3 py-2 border border-gray-400">President (Mr.) Hideyuki Tomia</td>
-                                    </tr>
-                                    <tr>
-                                        <th rowSpan={5} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Domesti Group</th>
+                                        <th rowSpan={5} className="text-left w-40 bg-black text-white text-sm px-3 py-2 font-light border border-gray-400">Domestic Group</th>
                                         <td className="px-3 py-2 border border-gray-400">Inazawa Manufacturing R&D</td>
                                     </tr>
                                     <tr>

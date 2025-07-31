@@ -5,7 +5,7 @@ import { getOfficeLocations } from '@/services/ApiService';
 import { useQuery } from '@tanstack/react-query';
 import SkeletonOfficeLocation from './SkeletonOfficeLocation';
 import OfficeLocationSingle from './SingleOfficeLocation';
-import Link from 'next/link';
+import OfficeLocationConfig from '@/data/officeLocationConfig';
 
 const OfficeLocation = () => {
     const { data: officeLocations, isLoading } = useQuery({
@@ -15,7 +15,7 @@ const OfficeLocation = () => {
             return response.data;
         }
     });
-
+    const { title, subtitle, description } = OfficeLocationConfig;
     return (
         <>
             <div className="py-16 px-4 md:px-10">
@@ -23,9 +23,9 @@ const OfficeLocation = () => {
                     <div className="animate_top mx-auto text-center">
                         <SectionHeader
                             headerInfo={{
-                                title: `Office Location`,
-                                subtitle: `Our Branches & Contact Points`,
-                                description: `Find our offices and branches across Indonesia. We are ready to serve you with local support and global expertise.`,
+                                title: title,
+                                subtitle: subtitle,
+                                description: description,
                             }}
                         />
                     </div>
