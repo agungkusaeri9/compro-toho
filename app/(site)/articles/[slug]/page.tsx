@@ -60,11 +60,11 @@ const SingleBlogPage = async ({ params }: any) => {
   return (
     <>
       <HeroHeader
-        title={article.title}
+        title={""}
         breadcrumbs={[
           { label: "Beranda", href: "/" },
           { label: "Blog", href: "/blog" },
-          { label: article.title },
+          { label: "Blog Detail" },
         ]}
       />
       <section className="lg:pb-25 xl:pb-30 pt-10">
@@ -83,7 +83,7 @@ const SingleBlogPage = async ({ params }: any) => {
                   </div>
                 </div>
 
-                <h2 className="mb-5 mt-11 text-3xl font-semibold text-black dark:text-white 2xl:text-sectiontitle2">
+                <h2 className="mb-5 mt-11 text-xl font-semibold text-black dark:text-white 2xl:text-sectiontitle2">
                   {article.title}
                 </h2>
 
